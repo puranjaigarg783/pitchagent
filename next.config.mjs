@@ -14,18 +14,23 @@ const nextConfig = {
       ? process.env.NEXT_PUBLIC_BASE_URL
       : undefined,
   async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/dashboard",
-        permanent: false,
-        has: [
-          {
-            type: "host",
-            value: process.env.NEXT_PUBLIC_APP_BASE_HOST,
-          },
-        ],
-      },
+    const redirects = [
+      // Only include the host-based redirect if the environment variable is set
+      ...(process.env.NEXT_PUBLIC_APP_BASE_HOST
+        ? [
+            {
+              source: "/",
+              destination: "/dashboard",
+              permanent: false,
+              has: [
+                {
+                  type: "host",
+                  value: process.env.NEXT_PUBLIC_APP_BASE_HOST,
+                },
+              ],
+            },
+          ]
+        : []),
       {
         source: "/view/cm2xiaxzo000d147xszm9q72o",
         destination: "/view/cm34cqqqx000212oekj9upn8o",
@@ -42,6 +47,8 @@ const nextConfig = {
         permanent: false,
       },
     ];
+    
+    return redirects;
   },
   async headers() {
     const isDev = process.env.NODE_ENV === "development";
@@ -117,21 +124,37 @@ const nextConfig = {
           },
         ],
       },
-      {
-        source: "/services/:path*",
-        has: [
-          {
-            type: "host",
-            value: process.env.NEXT_PUBLIC_WEBHOOK_BASE_HOST,
-          },
-        ],
-        headers: [
-          {
-            key: "X-Robots-Tag",
-            value: "noindex",
-          },
-        ],
-      },
+      // Only include the webhook host-based header if the environment variable is set
+      ...(process.env.NEXT_PUBLIC_WEBHOOK_BASE_HOST
+        ? [
+            {
+              source: "/services/:path*",
+              has: [
+                {
+                  type: "host",
+                  value: process.env.NEXT_PUBLIC_WEBHOOK_BASE_HOST,
+                },
+              ],
+              headers: [
+                {
+                  key: "X-Robots-Tag",
+                  value: "noindex",
+                },
+              ],
+            },
+          ]
+        : [
+            // Fallback without host condition when env var is not set
+            {
+              source: "/services/:path*",
+              headers: [
+                {
+                  key: "X-Robots-Tag",
+                  value: "noindex",
+                },
+              ],
+            },
+          ]),
       {
         source: "/api/webhooks/services/:path*",
         headers: [
