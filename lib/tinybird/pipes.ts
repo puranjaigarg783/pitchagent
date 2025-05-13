@@ -11,6 +11,7 @@ const tb = new Tinybird({
   baseUrl: "https://api.us-east.tinybird.co" // Add this line
 });
 
+
 export const getTotalAvgPageDuration = tb.buildPipe({
   pipe: "get_total_average_page_duration__v5",
   parameters: z.object({
