@@ -142,3 +142,4 @@ export default async function handle(
     return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
+
