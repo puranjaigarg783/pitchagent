@@ -27,6 +27,7 @@ import DownloadOnlyViewer from "./viewer/download-only-viewer";
 import ImageViewer from "./viewer/image-viewer";
 import PagesHorizontalViewer from "./viewer/pages-horizontal-viewer";
 import PagesVerticalViewer from "./viewer/pages-vertical-viewer";
+import PitchdeckVoiceWrapper from "./pitchdeck-voice-wrapper";
 import VideoViewer from "./viewer/video-viewer";
 
 const ExcelViewer = dynamic(
@@ -141,7 +142,8 @@ export default function ViewData({
       navData={navData}
     />
   ) : viewData.pages && !document.versions[0].isVertical ? (
-    <PagesHorizontalViewer
+    // Use our voice-enabled wrapper for horizontal PDF viewers
+    <PitchdeckVoiceWrapper
       pages={viewData.pages}
       feedbackEnabled={link.enableFeedback!}
       screenshotProtectionEnabled={link.enableScreenshotProtection!}
