@@ -153,26 +153,26 @@ pitchagent/
 
 ### 4.2 Development Phases
 
-#### Phase 1: Core Infrastructure (Week 1)
+#### Phase 1: Core Infrastructure 
 - Set up project structure
 - Implement API layer with FastAPI
 - Create base agent class
 - Implement LLM service with OpenAI API
 - Set up basic webhook handling
 
-#### Phase 2: Agent Implementation (Week 2)
+#### Phase 2: Agent Implementation 
 - Implement Orchestrator Agent
 - Implement Conversation Agent
 - Integrate with existing RAG pipeline
 - Implement basic conversation flow
 
-#### Phase 3: Personalization (Week 3)
+#### Phase 3: Personalization 
 - Implement Personalization Agent
 - Create investor database
 - Implement basic web scraping for investor research
 - Integrate personalization into conversation flow
 
-#### Phase 4: Integration and Testing (Week 4)
+#### Phase 4: Integration and Testing 
 - Integrate with voice API (Elevenlabs/Tavus)
 - Implement webhook synchronization with frontend
 - Comprehensive testing
@@ -304,17 +304,6 @@ While the MVP focuses on core functionality, the architecture is designed to be 
 - Start with basic personalization parameters
 - Implement feedback mechanisms to improve over time
 - Use default strategies when specific data is unavailable
-
-## 9. Success Metrics
-
-To evaluate the success of the MVP, consider tracking:
-
-1. **Conversation Quality**: Coherence, relevance, and naturalness of responses
-2. **Personalization Effectiveness**: How well the system adapts to different investors
-3. **Technical Performance**: Response times, error rates, and system stability
-4. **User Satisfaction**: Feedback from both founders and investors
-
-
 
 
 I'll expand on the personalization capabilities and how we'll gather and use investor information in the MVP. Here's a more detailed breakdown:
